@@ -38,7 +38,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import openapi_client
+import scout9
 ```
 
 ## Getting Started
@@ -48,28 +48,28 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```python
 
 import time
-import openapi_client
+import scout9
 from pprint import pprint
-from openapi_client.apis.tags import scout9_api
-from openapi_client.model.create_customer_request import CreateCustomerRequest
-from openapi_client.model.create_customer_response import CreateCustomerResponse
-from openapi_client.model.create_customers_request import CreateCustomersRequest
-from openapi_client.model.create_customers_response import CreateCustomersResponse
-from openapi_client.model.delete_customer_response import DeleteCustomerResponse
-from openapi_client.model.delete_customers_response import DeleteCustomersResponse
-from openapi_client.model.list_customers_response import ListCustomersResponse
-from openapi_client.model.update_customer_request import UpdateCustomerRequest
-from openapi_client.model.update_customer_response import UpdateCustomerResponse
-from openapi_client.model.update_customers_response import UpdateCustomersResponse
+from scout9.apis.tags import scout9_api
+from scout9.model.create_customer_request import CreateCustomerRequest
+from scout9.model.create_customer_response import CreateCustomerResponse
+from scout9.model.create_customers_request import CreateCustomersRequest
+from scout9.model.create_customers_response import CreateCustomersResponse
+from scout9.model.delete_customer_response import DeleteCustomerResponse
+from scout9.model.delete_customers_response import DeleteCustomersResponse
+from scout9.model.list_customers_response import ListCustomersResponse
+from scout9.model.update_customer_request import UpdateCustomerRequest
+from scout9.model.update_customer_response import UpdateCustomerResponse
+from scout9.model.update_customers_response import UpdateCustomersResponse
 # Defining the host is optional and defaults to https://us-central1-jumpstart.cloudfunctions.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = scout9.Configuration(
     host = "https://us-central1-jumpstart.cloudfunctions.net"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with scout9.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = scout9_api.Scout9Api(api_client)
     create_customer_request = CreateCustomerRequest(None) # CreateCustomerRequest | 
@@ -78,7 +78,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         # Creates a new customer
         api_response = api_instance.create_customer(create_customer_request)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except scout9.ApiException as e:
         print("Exception when calling Scout9Api->create_customer: %s\n" % e)
 ```
 
@@ -127,20 +127,20 @@ Class | Method | HTTP request | Description
 
 
 ## Notes for Large OpenAPI documents
-If the OpenAPI document is large, imports in openapi_client.apis and openapi_client.models may fail with a
+If the OpenAPI document is large, imports in scout9.apis and scout9.models may fail with a
 RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
 
 Solution 1:
 Use specific imports for apis and models like:
-- `from openapi_client.apis.default_api import DefaultApi`
-- `from openapi_client.model.pet import Pet`
+- `from scout9.apis.default_api import DefaultApi`
+- `from scout9.model.pet import Pet`
 
 Solution 1:
 Before importing the package, adjust the maximum recursion limit as shown below:
 ```
 import sys
 sys.setrecursionlimit(1500)
-import openapi_client
-from openapi_client.apis import *
-from openapi_client.models import *
+import scout9
+from scout9.apis import *
+from scout9.models import *
 ```
